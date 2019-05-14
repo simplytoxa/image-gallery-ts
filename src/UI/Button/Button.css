@@ -1,0 +1,87 @@
+.Button {
+  cursor: pointer;
+  outline: none;
+  display: inline-block;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 700;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 0;
+  border-radius: 20px;
+}
+
+.Button-primary {
+  /*background: linear-gradient(320deg, #f2fcfe, #1c92d2); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+  background: #1c92d2 linear-gradient(320deg, #a1c4fd 0%, #c2e9fb 100%);
+
+  color: #17a0f3;
+  /*color: #1c92d2;*/
+  font-size: 0;
+  height: 42px;
+  padding: 0 25px;
+  transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+.Button-primary .foreground {
+  font-size: 0.813rem;
+  line-height: 42px;
+  position: relative;
+  z-index: 1;
+}
+.Button-primary .background {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: calc(100% - 4px);
+  overflow: hidden;
+  width: calc(100% - 4px);
+  border-radius: 20px;
+}
+.Button-primary .background:before {
+  background: #fff;
+  clip: rect(0 200px 200px 0);
+  content: '';
+  display: block;
+  height: 200px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(38deg);
+  transition: clip 0.25s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  width: 200px;
+}
+.Button-primary:hover, .Button-primary:focus {
+  color: #fff;
+  cursor: pointer;
+}
+.Button-primary:hover .background:before, .Button-primary:focus .background:before {
+  clip: rect(0px 200px 200px 200px);
+}
+
+.Button-solid {
+  /*background: linear-gradient(320deg, #f2fcfe, #1c92d2); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+  background: #1c92d2 linear-gradient(320deg, #a1c4fd 0%, #c2e9fb 100%);
+
+  color: #fff;
+  font-size: 0;
+  height: 42px;
+  padding: 0 25px;
+  transition: color 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+.Button-solid .foreground {
+  font-size: 0.813rem;
+  line-height: 42px;
+  position: relative;
+  z-index: 1;
+}
+.Button-solid .background {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: calc(100% - 4px);
+  overflow: hidden;
+  width: calc(100% - 4px);
+  border-radius: 20px;
+}

@@ -1,0 +1,17 @@
+.Toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #d3d3d3;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 10px 30px -7px rgba(0,0,0,0.13);
+}
+
+.Toolbar-logo {
+  font-family: 'Maven Pro', sans-serif;
+  font-size: 24px;
+  color: #1c92d2;
+}

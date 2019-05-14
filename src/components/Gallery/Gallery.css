@@ -1,0 +1,20 @@
+.Gallery-container {
+  padding: 20px;
+}
+
+.Gallery {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100rem;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+  min-height: 30vh;
+}
+
+@supports (display: grid) {
+  .Gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-gap: 1rem;
+  }
+}

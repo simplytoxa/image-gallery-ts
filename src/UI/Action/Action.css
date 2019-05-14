@@ -1,0 +1,8 @@
+.Action {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  opacity: 0;
+  color: #fff;
+  transition: 0.3s all ease-in-out;
+}

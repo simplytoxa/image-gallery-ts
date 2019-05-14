@@ -1,0 +1,8 @@
+.Status {
+  color: grey;
+  font-size: 18px;
+}
+
+.Status__number {
+  margin-left: 10px;
+}

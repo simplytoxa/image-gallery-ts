@@ -1,0 +1,11 @@
+.NoData {
+  font-family: 'Maven Pro', sans-serif;
+  color: grey;
+  min-height: 50vh;
+  font-size: 24px;
+}
+
+.NoData-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
