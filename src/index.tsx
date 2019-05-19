@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import './index.css';
-import 'normalize.css'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faExclamationCircle, faCloudUploadAlt, faImages, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
+import rootReducer from './store/reducers';
 
 library.add(faExclamationCircle);
 library.add(faCloudUploadAlt);
@@ -16,19 +16,15 @@ library.add(faTimes);
 library.add(faTrash);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const rootReducer = combineReducers({
-
-});
 const store = createStore(rootReducer, composeEnhancers(
-  // applyMiddleware()
-  
+  applyMiddleware()
 ));
 
 const app = (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
 
 ReactDOM.render(app, document.getElementById('root'));
 

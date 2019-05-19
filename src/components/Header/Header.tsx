@@ -1,12 +1,10 @@
-import React from 'react';
-import './Header.css';
+import React, { PropsWithChildren } from "react";
+import "./Header.css";
 
-const Header = props => {
-  return (
-    <header className="Header">
-      {props.children}
-    </header>
-  );
-};
+export interface HeaderProps {}
+
+const Header = (props: PropsWithChildren<HeaderProps>) => (
+  <header className="Header">{props.children}</header>
+);
 
 export default Header;

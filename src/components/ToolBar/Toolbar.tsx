@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
-import Button from '../../UI/Button/Button';
-import './Toolbar.css';
-import PropTypes from 'prop-types';
+import React, { PureComponent } from "react";
+import Button from "../../UI/Button/Button";
+import "./Toolbar.css";
+import PropTypes from "prop-types";
 import Status from "../Status/Status";
 import Search from "../../UI/Search/Search";
 
@@ -23,8 +23,11 @@ class Toolbar extends PureComponent {
         <Status filesCount={this.props.filesCount} />
         <Button
           type="button"
-          onClick={ this.toggleModal }
-          className="Button Button-primary">Add photo</Button>
+          onClick={this.toggleModal}
+          className="Button Button-primary"
+        >
+          Add photo
+        </Button>
       </div>
     );
   }
