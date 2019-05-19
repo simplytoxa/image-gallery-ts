@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Toolbar from "./components/ToolBar/Toolbar";
+import Toolbar from "./containers/Toolbar";
 import Gallery from "./components/Gallery/Gallery";
 import Modal from "./UI/Modal/Modal";
 import SendForm from "./components/SendForm/SendForm";

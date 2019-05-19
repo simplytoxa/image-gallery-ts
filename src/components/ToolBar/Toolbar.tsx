@@ -1,19 +1,20 @@
-import React, { PureComponent } from "react";
+import * as React from 'react';
 import Button from "../../UI/Button/Button";
 import "./Toolbar.css";
-import PropTypes from "prop-types";
 import Status from "../Status/Status";
 import Search from "../../UI/Search/Search";
 
-class Toolbar extends PureComponent {
-  static propTypes = {
-    toggleModal: PropTypes.func,
-    filesCount: PropTypes.number
-  };
+interface ToolbarProps {
+  isModalOpen: boolean;
+  toggleModal: (isOpenModal: boolean) => void;
+} 
 
-  toggleModal = () => {
-    this.props.toggleModal();
-  };
+class Toolbar extends React.PureComponent<ToolbarProps> {
+  constructor(props: ToolbarProps) {
+    super(props);
+  }
+
+  private toggle = () => this.props.toggleModal(this.props.isModalOpen)
 
   render() {
     return (
@@ -23,7 +24,7 @@ class Toolbar extends PureComponent {
         <Status filesCount={this.props.filesCount} />
         <Button
           type="button"
-          onClick={this.toggleModal}
+          onClick={this.toggle}
           className="Button Button-primary"
         >
           Add photo
@@ -31,6 +32,6 @@ class Toolbar extends PureComponent {
       </div>
     );
   }
-}
+};
 
 export default Toolbar;
