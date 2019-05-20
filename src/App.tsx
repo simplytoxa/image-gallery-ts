@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from "react";
 import Toolbar from "./containers/Toolbar";
 import Gallery from "./components/Gallery/Gallery";
-import Modal from "./UI/Modal/Modal";
-import SendForm from "./components/SendForm/SendForm";
+import Modal from './containers/Modal';
 import axios from "./axios-instance";
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
@@ -82,7 +81,6 @@ class App extends Component {
       <Fragment>
         <Header>
           <Toolbar
-            filesCount={this.state.count}
             onSearchChange={this.searchChangeHandler}
           />
         </Header>
@@ -94,11 +92,7 @@ class App extends Component {
             images={this.state.images}
           />
         </Main>
-        {this.state.isModalOpen && (
-          <Modal onClose={this.toggleModal}>
-            <SendForm closeModal={this.toggleModal} file={this.state.file} />
-          </Modal>
-        )}
+        <Modal />
       </Fragment>
     );
   }

@@ -10,10 +10,6 @@ interface ToolbarProps {
 } 
 
 class Toolbar extends React.PureComponent<ToolbarProps> {
-  constructor(props: ToolbarProps) {
-    super(props);
-  }
-
   private toggle = () => this.props.toggleModal(this.props.isModalOpen)
 
   render() {
@@ -21,7 +17,7 @@ class Toolbar extends React.PureComponent<ToolbarProps> {
       <div className="Toolbar">
         <span className="Toolbar-logo">Gallery</span>
         <Search onChange={this.props.onSearchChange} />
-        <Status filesCount={this.props.filesCount} />
+        <Status filesCount={this.props.count} />
         <Button
           type="button"
           onClick={this.toggle}

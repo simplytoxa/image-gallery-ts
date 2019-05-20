@@ -11,17 +11,14 @@ export interface Props {
 }
 
 class ToolbarContainer extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-  }
-
   render() {
     return <Toolbar {...this.props} />;
   }
 }
 
 const mapStateToProps = (state) => ({
-  isModalOpen: state.toolbar.isModalOpen
+  isModalOpen: state.toolbar.isModalOpen,
+  count: state.gallery.count
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

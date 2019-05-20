@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faExclamationCircle, faCloudUploadAlt, faImages, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
 import rootReducer from './store/reducers';
+import thunk from 'redux-thunk';
 
 library.add(faExclamationCircle);
 library.add(faCloudUploadAlt);
@@ -17,7 +18,7 @@ library.add(faTrash);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(rootReducer, composeEnhancers(
-  applyMiddleware()
+  applyMiddleware(thunk)
 ));
 
 const app = (
