@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Toolbar from "./containers/Toolbar";
-import Gallery from "./components/Gallery/Gallery";
+import Gallery from "./containers/Gallery";
 import Modal from './containers/Modal';
 import axios from "./axios-instance";
 import Header from "./components/Header/Header";
@@ -85,12 +85,7 @@ class App extends Component {
           />
         </Header>
         <Main>
-          <Gallery
-            toggleModal={this.toggleModal}
-            fetchImages={this.fetchImages}
-            onFileDrop={this.onFileDrop}
-            images={this.state.images}
-          />
+          <Gallery />
         </Main>
         <Modal />
       </Fragment>

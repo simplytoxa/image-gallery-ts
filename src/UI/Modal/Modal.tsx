@@ -3,25 +3,37 @@ import ReactDOM from 'react-dom';
 import './Modal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class Modal extends React.Component {
+interface Props {
+  onClose: () => void
+}
+class Modal extends React.Component<Props> {
+  constructor(props: Props, private root: Element) {
+    super(props);
+  }
+
   componentWillMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
   }
 
   componentWillUnmount() {
-    document.body.removeChild(this.root);
+    document.body.removeChild(this.root as Node);
   }
 
-  clickHandler = event => event.target.id === 'modal' ? this.props.onClose() : false;
+  clickHandler = (
+    event: React.MouseEvent<
+      HTMLDivElement,
+      MouseEvent
+    >
+  ) => (event.target && event.target.id === 'modal') && this.props.onClose();
 
   render() {
     return ReactDOM.createPortal(
       <div className="Modal" id="modal" onClick={this.clickHandler}>
         <div className="Modal__children">
-          <a href className="Modal__close-button" onClick={this.props.onClose}>
+          <button className="Modal__close-button" onClick={this.props.onClose}>
             <FontAwesomeIcon icon="times" />
-          </a>
+          </button>
           {this.props.children}
           </div>
       </div>,

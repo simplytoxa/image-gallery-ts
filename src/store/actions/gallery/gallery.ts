@@ -1,31 +1,48 @@
 import ActionTypes from "../ActionTypes";
-import axios from "../../../axios-instance";
-import { AxiosResponse } from "axios";
+import { AxiosResponse, AxiosError } from "axios";
 
 export const fetchImagesStart = () => ({
-    type: ActionTypes.FETCH_IMAGES
+    type: ActionTypes.FETCH_IMAGES,
+    ready: false
 });
 
-export const fetchImagesFail = (error) => ({
+export const fetchImagesFail = (error: AxiosError) => ({
     type: ActionTypes.FETCH_IMAGES_FAIL,
-    error
+    error,
+    ready: true
 });
 
 export const fetchImagesSuccess = (res: AxiosResponse) => ({
     type: ActionTypes.FETCH_IMAGES_SUCCESS,
     images: res.data.images,
     count: res.data.count,
-    file: null
+    file: null,
+    ready: true
 });
 
-export const fetchImages = () => {
-  return (dispatch) => {
-      dispatch(fetchImagesStart());
-      axios
-        .get("/images")
-        .then(
-            (res: AxiosResponse) => dispatch(fetchImagesSuccess(res)),
-            (error) => dispatch(fetchImagesFail(error))
-        );
-  };
-};
+export const fetchImagesInit = () => ({
+    type: ActionTypes.FETCH_IMAGES_INIT
+});
+
+export const fileDrop = () => ({
+    type: ActionTypes.FILE_DROP
+});
+
+export const removeImageInit = (name: string) => ({
+    type: ActionTypes.REMOVE_IMAGE_INIT,
+    name
+});
+
+export const removeImageStart = () => ({
+    type: ActionTypes.REMOVE_IMAGE_START
+});
+
+export const removeImageSuccess = (res: AxiosResponse) => ({
+    type: ActionTypes.REMOVE_IMAGE_SUCCESS,
+    status: res.status
+});
+
+export const removeImageFail = (error) => ({
+    type: ActionTypes.REMOVE_IMAGE_FAIL,
+    error
+});

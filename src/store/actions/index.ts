@@ -1,7 +1,12 @@
 export { toogleModal } from "./toolbar/toolbar";
 export {
-  fetchImages,
+  fetchImagesInit,
   fetchImagesStart,
   fetchImagesSuccess,
-  fetchImagesFail
+  fetchImagesFail,
+  fileDrop,
+  removeImageInit,
+  removeImageStart,
+  removeImageSuccess,
+  removeImageFail,
 } from "./gallery/gallery";
