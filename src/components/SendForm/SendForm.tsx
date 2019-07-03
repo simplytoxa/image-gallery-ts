@@ -104,7 +104,7 @@ class SendForm extends Component {
               <div className="success">The image is already uploaded! Please select another image.</div>}
             </div>
 
-            <ProgressBar progress={this.state.progress} />
+            <ProgressBar progress={this.props.progress} />
           </label>
         </Dropzone>
       </form>

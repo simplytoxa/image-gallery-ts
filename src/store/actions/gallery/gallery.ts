@@ -42,7 +42,7 @@ export const removeImageSuccess = (res: AxiosResponse) => ({
     status: res.status
 });
 
-export const removeImageFail = (error) => ({
+export const removeImageFail = (error: AxiosError) => ({
     type: ActionTypes.REMOVE_IMAGE_FAIL,
     error
 });
@@ -61,11 +61,11 @@ export const uploadImageSuccess = (res: AxiosResponse) => ({
     status: res.status
 });
 
-export const uploadImageFail = (error) => ({
+export const uploadImageFail = (error: AxiosError) => ({
     type: ActionTypes.UPLOAD_IMAGE_FAIL,
     error
 });
 
-export const setProgress = (progress) => ({
+export const setProgress = (progress: number) => ({
     type: ActionTypes.SET_PROGRESS
 });

@@ -41,6 +41,7 @@ export function* uploadImageSaga(action: Action<ActionTypes.UPLOAD_IMAGE_INIT>) 
         }
       });
       yield put(actions.uploadImageSuccess(result as AxiosResponse) as Action<ActionTypes.UPLOAD_IMAGE_SUCCESS>);
+      yield put(actions.toggleModal(true));
       yield put(actions.fetchImagesInit());
     } catch (error) {
       yield put(actions.uploadImageFail(error as AxiosError) as Action<ActionTypes.UPLOAD_IMAGE_FAIL>);

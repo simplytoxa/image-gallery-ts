@@ -34,7 +34,7 @@ const mapState2Props = (state) => ({
 });
 
 const mapDispatch2Props = (dispatch: Dispatch) => ({
-  toggleModal: (isModalOpen: boolean) => dispatch(actions.toogleModal(isModalOpen)),
+  toggleModal: (isModalOpen: boolean) => dispatch(actions.toggleModal(isModalOpen)),
   fetchImages: () => dispatch(actions.fetchImagesInit()),
   onFileDrop: () => dispatch(actions.fileDrop()),
   removeItem: (name: string) => dispatch(actions.removeImageInit(name))

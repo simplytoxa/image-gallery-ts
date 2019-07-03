@@ -5,7 +5,7 @@ export interface ToolbarAction extends Action<ActionTypes> {
     isModalOpen: boolean;
 }
 
-export const toogleModal = (isModalOpen: boolean): ToolbarAction => {
+export const toggleModal = (isModalOpen: boolean): ToolbarAction => {
     window.scrollTo(0, 0);
 
     const body = document.querySelector("body");

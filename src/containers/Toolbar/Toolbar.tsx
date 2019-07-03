@@ -23,7 +23,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toogleModal(isModalOpen)),
+  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toggleModal(isModalOpen)),
   handleSearch: (): ToolbarAction => dispatch(actions.handleSearch())
 });
 

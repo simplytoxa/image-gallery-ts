@@ -28,11 +28,12 @@ class ModalContainer extends React.Component<ModalProps, any> {
 
 const mapStateToProps = (state) => ({
   isModalOpen: state.toolbar.isModalOpen,
-  file: state.toolbar.file
+  file: state.toolbar.file,
+  progress: state.gallery.progress
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toogleModal(isModalOpen)),
+  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toggleModal(isModalOpen)),
   uploadImage: (formData: FormData) => dispatch(actions.uploadImageInit(formData))
 });
 
