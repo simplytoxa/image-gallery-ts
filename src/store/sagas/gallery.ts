@@ -22,10 +22,27 @@ export function* fetchImagesSaga() {
 export function* removeImageSaga(action: Action<ActionTypes.REMOVE_IMAGE_INIT>) {
   try {
     yield put(actions.removeImageStart() as Action<ActionTypes.REMOVE_IMAGE_START>);
-    const result: AxiosResponse = yield axios.post('/remove', { name: action.name })
+    const result: AxiosResponse = yield axios.post('/remove', { name: action.name });
     yield put(actions.removeImageSuccess(result as AxiosResponse) as Action<ActionTypes.REMOVE_IMAGE_SUCCESS>);
     yield put(actions.fetchImagesInit());
   } catch(error) {
     yield put(actions.removeImageFail(error as AxiosError) as Action<ActionTypes.REMOVE_IMAGE_FAIL>);
   }
+}
+
+
+export function* uploadImageSaga(action: Action<ActionTypes.UPLOAD_IMAGE_INIT>) {
+    try {
+      yield put(actions.removeImageStart() as Action<ActionTypes.UPLOAD_IMAGE_START>)
+      const result: AxiosResponse = yield axios.post('/upload', action.formData, {
+        onUploadProgress: progressEvent => {
+          const progress = Math.round(progressEvent.loaded / progressEvent.total * 100);
+          put(actions.setProgress(progress));
+        }
+      });
+      yield put(actions.uploadImageSuccess(result as AxiosResponse) as Action<ActionTypes.UPLOAD_IMAGE_SUCCESS>);
+      yield put(actions.fetchImagesInit());
+    } catch (error) {
+      yield put(actions.uploadImageFail(error as AxiosError) as Action<ActionTypes.UPLOAD_IMAGE_FAIL>);
+    }
 }

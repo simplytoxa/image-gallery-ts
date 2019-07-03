@@ -8,6 +8,7 @@ import { ToolbarAction } from "../../store/actions/toolbar/toolbar";
 export interface Props {
   children?: React.ReactNode;
   toggleModal: (isModalOpen: boolean) => ToolbarAction;
+  isModalOpen: boolean; 
 }
 
 class ToolbarContainer extends Component<Props> {
@@ -22,7 +23,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toogleModal(isModalOpen))
+  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toogleModal(isModalOpen)),
+  handleSearch: (): ToolbarAction => dispatch(actions.handleSearch())
 });
 
 export default connect(

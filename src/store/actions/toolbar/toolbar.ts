@@ -16,3 +16,7 @@ export const toogleModal = (isModalOpen: boolean): ToolbarAction => {
         isModalOpen: !isModalOpen
     };
 };
+
+export const handleSearch = () => ({
+    type: ActionTypes.SEARCH
+});

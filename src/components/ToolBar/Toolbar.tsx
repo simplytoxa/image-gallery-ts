@@ -7,7 +7,9 @@ import Search from "../../UI/Search/Search";
 interface ToolbarProps {
   isModalOpen: boolean;
   toggleModal: (isOpenModal: boolean) => void;
-} 
+  count: number;
+  handleSearch: () => void;
+}
 
 class Toolbar extends React.PureComponent<ToolbarProps> {
   private toggle = () => this.props.toggleModal(this.props.isModalOpen)
@@ -16,7 +18,7 @@ class Toolbar extends React.PureComponent<ToolbarProps> {
     return (
       <div className="Toolbar">
         <span className="Toolbar-logo">Gallery</span>
-        <Search onChange={this.props.onSearchChange} />
+        <Search handleSearch={this.props.handleSearch} />
         <Status filesCount={this.props.count} />
         <Button
           type="button"

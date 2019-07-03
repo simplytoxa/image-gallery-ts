@@ -1,25 +1,26 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, ChangeEvent } from 'react';
 import './Search.css';
-import PropTypes from 'prop-types';
 
-class Search extends PureComponent {
-  static propTypes = {
-    onChange: PropTypes.func
-  };
+export interface Props {
+  handleSearch: (term: string) => void
+}
 
+class Search extends PureComponent<Props> {
   state = {
     value: ''
   };
 
-  handleChange = event => {
-    const term = event.target.value;
-    this.setState({value: event.target.value});
-    this.props.onChange(term);
+  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (event.target) {
+      const term = event.target.value;
+      this.setState({value: event.target.value});
+      this.props.handleSearch(term);
+    }
   };
 
   clearSearchHandler = () => {
     this.setState({ value: '' });
-    this.props.onChange('');
+    this.props.handleSearch('');
   };
 
   render() {

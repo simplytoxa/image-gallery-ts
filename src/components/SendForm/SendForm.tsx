@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Button from "../../UI/Button/Button";
-import axios from '../../axios-instance';
 import InputFile from "./InputFile/InputFile";
 import './SendForm.css';
 import Dropzone from "../Dropzone/Dropzone";
@@ -37,21 +36,23 @@ class SendForm extends Component {
     const formData = new FormData();
     formData.set( 'imageFile', file, file.name );
 
-    axios.post( '/upload', formData, {
-      onUploadProgress: progressEvent => {
-        const progress = Math.round(progressEvent.loaded / progressEvent.total * 100);
-        this.setState({ progress });
-      }
-    })
-      .then(res => {
-        if ( res.data.alreadyExist ) {
-          return this.setState({ showAlreadyExistMessage: true, progress: 0 });
-        }
+    this.props.uploadImage(formData);
 
-        this.setState({ selectedFile: null });
-        this.props.closeModal(true);
-      })
-      .catch(error => console.error(error));
+    // axios.post( '/upload', formData, {
+    //   onUploadProgress: progressEvent => {
+    //     const progress = Math.round(progressEvent.loaded / progressEvent.total * 100);
+    //     this.setState({ progress });
+    //   }
+    // })
+    //   .then(res => {
+    //     if ( res.data.alreadyExist ) {
+    //       return this.setState({ showAlreadyExistMessage: true, progress: 0 });
+    //     }
+
+    //     this.setState({ selectedFile: null });
+    //     this.props.closeModal(true);
+    //   })
+    //   .catch(error => console.error(error));
   };
 
   inputFileChangeHandler = event => {

@@ -16,6 +16,7 @@ class ModalContainer extends React.Component<ModalProps, any> {
           <Modal onClose={this.props.toggleModal}>
             <SendForm
               closeModal={this.props.toggleModal}
+              uploadImage={this.props.uploadImage}
               file={this.props.file}
             />
           </Modal>
@@ -31,7 +32,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toogleModal(isModalOpen))
+  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toogleModal(isModalOpen)),
+  uploadImage: (formData: FormData) => dispatch(actions.uploadImageInit(formData))
 });
 
 export default connect(
