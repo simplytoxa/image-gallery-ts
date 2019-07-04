@@ -22,7 +22,7 @@ app.post('/upload', (req, res) => {
 
     fs.readdir('./public/uploadedImages', (err, files) => {
         if ( !files.includes(imageFile.name) ) {
-            imageFile.mv(`${__dirname}/public/uploadedImages/${imageFile.name}`, function(err) {
+            imageFile.mv(`${__dirname}/public/uploadedImages/${imageFile.name}`, (err) => {
                 if (err) {
                     return res.status(500).send(err);
                 }

@@ -5,6 +5,7 @@ import './SendForm.css';
 import Dropzone from "../Dropzone/Dropzone";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProgressBar from "../../UI/PorgressBar/ProgressBar";
+import axios from '../../axios-instance';
 
 const warning = {
   'color': 'red'
@@ -13,10 +14,21 @@ const warning = {
 class SendForm extends Component {
   state = {
     selectedFile: null,
-    progress: 0,
     showMessage: false,
-    showAlreadyExistMessage: false
+    showAlreadyExistMessage: false,
+    progress: 0
   };
+
+  constructor(props) {
+    super(props);
+    axios.interceptors.request.use((config) => ({
+      ...config,
+      onUploadProgress: (progressEvent) => {
+        const progress = Math.round(progressEvent.loaded / progressEvent.total * 100);
+        this.setState({ progress });
+      }
+    }));
+  }
 
   imgRef = React.createRef();
 
@@ -37,22 +49,6 @@ class SendForm extends Component {
     formData.set( 'imageFile', file, file.name );
 
     this.props.uploadImage(formData);
-
-    // axios.post( '/upload', formData, {
-    //   onUploadProgress: progressEvent => {
-    //     const progress = Math.round(progressEvent.loaded / progressEvent.total * 100);
-    //     this.setState({ progress });
-    //   }
-    // })
-    //   .then(res => {
-    //     if ( res.data.alreadyExist ) {
-    //       return this.setState({ showAlreadyExistMessage: true, progress: 0 });
-    //     }
-
-    //     this.setState({ selectedFile: null });
-    //     this.props.closeModal(true);
-    //   })
-    //   .catch(error => console.error(error));
   };
 
   inputFileChangeHandler = event => {
@@ -104,7 +100,7 @@ class SendForm extends Component {
               <div className="success">The image is already uploaded! Please select another image.</div>}
             </div>
 
-            <ProgressBar progress={this.props.progress} />
+            <ProgressBar progress={this.state.progress} />
           </label>
         </Dropzone>
       </form>

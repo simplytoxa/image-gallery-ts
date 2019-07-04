@@ -65,7 +65,3 @@ export const uploadImageFail = (error: AxiosError) => ({
     type: ActionTypes.UPLOAD_IMAGE_FAIL,
     error
 });
-
-export const setProgress = (progress: number) => ({
-    type: ActionTypes.SET_PROGRESS
-});

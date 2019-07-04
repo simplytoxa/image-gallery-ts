@@ -6,8 +6,7 @@ export {
   fetchImagesFail,
 
   fileDrop,
-  setProgress,
-
+  
   removeImageInit,
   removeImageStart,
   removeImageSuccess,
