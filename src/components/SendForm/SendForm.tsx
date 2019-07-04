@@ -79,7 +79,7 @@ class SendForm extends Component {
 
           <label className="SendForm__label">
             <img src="#" alt="Preview" className="hidden" ref={this.imgRef} />
-            <div>
+            <div className="SendForm__image-container">
               {
                 !this.state.selectedFile ?
                 <FontAwesomeIcon icon="cloud-upload-alt" className="SendForm__icon" /> :

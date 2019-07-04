@@ -16,14 +16,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   clear: both;
   width: 100%;
   height: 55vh;
   text-align: center;
-  background: #fff;
   transition: all .2s ease;
   user-select: none;
+}
+
+.SendForm__image-container {
+  margin-bottom: 2rem;
 }
 
 .success {
