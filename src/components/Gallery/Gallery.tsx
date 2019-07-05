@@ -8,11 +8,6 @@ import { GalleryContainerProps } from '../../containers/Gallery/Gallery.containe
 import Image from '../../models/Image';
 
 class Gallery extends PureComponent<GalleryContainerProps> {
-  onDrop = file => {
-    this.props.onFileDrop(file);
-    this.props.toggleModal(this.props.isModalOpen);
-  };
-
   handleRemove = (name: string) => {
     return () => this.props.removeItem(name);
   };

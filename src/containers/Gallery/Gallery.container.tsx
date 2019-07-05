@@ -29,14 +29,14 @@ class GalleryContainer extends React.Component<GalleryContainerProps, any> {
 
 const mapState2Props = (state) => ({
   images: state.gallery.images,
-  isModalOpen: state.toolbar.isModalOpen,
+  isModalOpen: state.gallery.isModalOpen,
   ready: state.gallery.ready
 });
 
 const mapDispatch2Props = (dispatch: Dispatch) => ({
   toggleModal: (isModalOpen: boolean) => dispatch(actions.toggleModal(isModalOpen)),
   fetchImages: () => dispatch(actions.fetchImagesInit()),
-  onFileDrop: () => dispatch(actions.fileDrop()),
+  onFileDrop: (file: DataTransferItem) => dispatch(actions.fileDrop(file)),
   removeItem: (name: string) => dispatch(actions.removeImageInit(name))
 });
 

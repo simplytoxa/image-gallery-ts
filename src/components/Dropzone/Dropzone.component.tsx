@@ -1,27 +1,13 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import './Dropzone.component.css';
 
-const stylesBorder = {
-  borderColor: '#eee'
-};
-
-const stylesNoBorder = {
-  border: 0,
-  backgroundColor: '#fff'
-};
-
 class Dropzone extends PureComponent {
-  static propTypes = {
-    onDrop: PropTypes.func.isRequired
-  };
-
   state = {
     hover: false,
     file: null
   };
 
-  dragOverHandler = event => {
+  dragOverHandler = (event) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -36,7 +22,7 @@ class Dropzone extends PureComponent {
 
   };
 
-  dropHandler = event => {
+  dropHandler = (event) => {
     event.stopPropagation();
     event.preventDefault();
     this.setState({ hover: false });
@@ -49,7 +35,6 @@ class Dropzone extends PureComponent {
   render() {
     return (
         <div
-          style={this.props.border ? stylesBorder : stylesNoBorder}
           className={this.state.hover ? 'Dropzone hover' : 'Dropzone'}
           onDragOver={this.dragOverHandler}
           onDragLeave={this.dragOverHandler}

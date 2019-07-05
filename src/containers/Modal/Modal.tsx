@@ -27,8 +27,8 @@ class ModalContainer extends React.Component<ModalProps, any> {
 }
 
 const mapStateToProps = (state) => ({
-  isModalOpen: state.toolbar.isModalOpen,
-  file: state.toolbar.file
+  isModalOpen: state.gallery.isModalOpen,
+  file: state.gallery.file
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

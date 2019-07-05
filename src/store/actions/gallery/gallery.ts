@@ -24,8 +24,10 @@ export const fetchImagesInit = () => ({
     type: ActionTypes.FETCH_IMAGES_INIT
 });
 
-export const fileDrop = () => ({
-    type: ActionTypes.FILE_DROP
+export const fileDrop = (file: DataTransferItem) => ({
+    type: ActionTypes.FILE_DROP,
+    isModalOpen: true,
+    file
 });
 
 export const removeImageInit = (name: string) => ({
@@ -64,4 +66,21 @@ export const uploadImageSuccess = (res: AxiosResponse) => ({
 export const uploadImageFail = (error: AxiosError) => ({
     type: ActionTypes.UPLOAD_IMAGE_FAIL,
     error
+});
+
+export const toggleModal = (isModalOpen: boolean) => {
+    window.scrollTo(0, 0);
+
+    const body = document.querySelector("body");
+    body && body.classList.toggle("open-modal");
+
+    return {
+        type: ActionTypes.TOGGLE_MODAL,
+        isModalOpen: !isModalOpen,
+        file: null
+    };
+};
+
+export const handleSearch = () => ({
+    type: ActionTypes.SEARCH
 });

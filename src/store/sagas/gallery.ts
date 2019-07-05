@@ -32,15 +32,11 @@ export function* removeImageSaga(action: Action<ActionTypes.REMOVE_IMAGE_INIT>) 
 
 export function* uploadImageSaga(action: Action<ActionTypes.UPLOAD_IMAGE_INIT>) {
     try {
-      yield put(actions.uploadImageStart() as Action<ActionTypes.UPLOAD_IMAGE_START>)
+      yield put(actions.uploadImageStart() as Action<ActionTypes.UPLOAD_IMAGE_START>);
       const result: AxiosResponse = yield axios.post('/upload', action.formData);
       yield put(actions.uploadImageSuccess(result as AxiosResponse) as Action<ActionTypes.UPLOAD_IMAGE_SUCCESS>);
       yield put(actions.fetchImagesInit());
     } catch (error) {
       yield put(actions.uploadImageFail(error as AxiosError) as Action<ActionTypes.UPLOAD_IMAGE_FAIL>);
     }
-}
-
-export function* fileDropSaga(action: Action) {
-
 }

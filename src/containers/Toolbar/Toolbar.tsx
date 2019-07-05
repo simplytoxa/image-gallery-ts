@@ -8,7 +8,7 @@ import { ToolbarAction } from "../../store/actions/toolbar/toolbar";
 export interface Props {
   children?: React.ReactNode;
   toggleModal: (isModalOpen: boolean) => ToolbarAction;
-  isModalOpen: boolean; 
+  isModalOpen: boolean;
 }
 
 class ToolbarContainer extends Component<Props> {
@@ -18,7 +18,7 @@ class ToolbarContainer extends Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
-  isModalOpen: state.toolbar.isModalOpen,
+  isModalOpen: state.gallery.isModalOpen,
   count: state.gallery.count
 });
 

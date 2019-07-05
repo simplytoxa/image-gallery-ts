@@ -1,4 +1,3 @@
-export { toggleModal, handleSearch } from "./toolbar/toolbar";
 export {
   fetchImagesInit,
   fetchImagesStart,
@@ -6,7 +5,9 @@ export {
   fetchImagesFail,
 
   fileDrop,
-  
+  toggleModal,
+  handleSearch,
+
   removeImageInit,
   removeImageStart,
   removeImageSuccess,
