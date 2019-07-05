@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from "../../UI/Button/Button";
 import InputFile from "./InputFile/InputFile";
 import './SendForm.css';
-import Dropzone from "../Dropzone/Dropzone";
+import Dropzone from "../Dropzone/Dropzone.component";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProgressBar from "../../UI/PorgressBar/ProgressBar";
 import axios from '../../axios-instance';

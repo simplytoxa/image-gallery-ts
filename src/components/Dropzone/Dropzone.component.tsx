@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import './Dropzone.css';
+import './Dropzone.component.css';
 
 const stylesBorder = {
   borderColor: '#eee'

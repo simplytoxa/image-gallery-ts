@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import GalleryItem from "./GalleryItem/GalleryItem";
 import './Gallery.css';
-import Dropzone from "../../components/Dropzone/Dropzone";
+import Dropzone from "../Dropzone/Dropzone.component";
 import NoData from "../NoData/NoData";
 import Spinner from "../../UI/Spinner/Spinner";
 import { GalleryContainerProps } from '../../containers/Gallery/Gallery.container';
@@ -23,7 +23,7 @@ class Gallery extends PureComponent<GalleryContainerProps> {
     );
 
     return (
-        <Dropzone onDrop={this.onDrop}>
+        <Dropzone onDrop={this.props.onFileDrop}>
           <div className="Gallery-container">
             {!this.props.ready && <Spinner />}
             {

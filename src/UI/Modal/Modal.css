@@ -27,7 +27,7 @@
   right: 16px;
   cursor: pointer;
   font-size: 26px;
-  color: #17a0f3;
+  color: #179ff3a9;
   z-index: 2;
   background-color: transparent;
   border: none;
@@ -36,7 +36,7 @@
 }
 
 .Modal .Modal__close-button:hover {
-  transform: rotate(360deg);
+  color: #17a0f3;
 }
 
 @keyframes modalFade {

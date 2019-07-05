@@ -40,3 +40,7 @@ export function* uploadImageSaga(action: Action<ActionTypes.UPLOAD_IMAGE_INIT>) 
       yield put(actions.uploadImageFail(error as AxiosError) as Action<ActionTypes.UPLOAD_IMAGE_FAIL>);
     }
 }
+
+export function* fileDropSaga(action: Action) {
+
+}
