@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, RefObject } from 'react';
 import Button from "../../UI/Button/Button";
 import InputFile from "./InputFile/InputFile";
 import './SendForm.css';
@@ -7,11 +7,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ProgressBar from "../../UI/PorgressBar/ProgressBar";
 import axios from '../../axios-instance';
 
+interface SendFormProps {
+  file: File,
+  uploadImage: (formData: FormData) => void
+}
+
 const warning = {
   'color': 'red'
 };
 
-class SendForm extends Component {
+class SendForm extends Component<SendFormProps> {
   state = {
     selectedFile: null,
     showMessage: false,
@@ -19,7 +24,7 @@ class SendForm extends Component {
     progress: 0
   };
 
-  constructor(props) {
+  constructor(props: SendFormProps) {
     super(props);
     axios.interceptors.request.use((config) => ({
       ...config,
@@ -30,7 +35,7 @@ class SendForm extends Component {
     }));
   }
 
-  imgRef = React.createRef();
+  imgRef: RefObject<HTMLImageElement> = React.createRef();
 
   componentDidMount() {
     if ( this.props.file ) {
@@ -51,8 +56,8 @@ class SendForm extends Component {
     this.props.uploadImage(formData);
   };
 
-  inputFileChangeHandler = event => {
-    const file = event.target.files[0];
+  inputFileChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    const file = event.target && event.target.files[0];
 
     if ( file ) {
       this.createPreview(file);
@@ -60,14 +65,14 @@ class SendForm extends Component {
     }
   };
 
-  createPreview = file => {
-    if ( file ) {
+  createPreview = (file: File | null) => {
+    if ( file && this.imgRef.current ) {
       this.imgRef.current.className = 'SendForm__preview';
       this.imgRef.current.src = URL.createObjectURL(file);
     }
   };
 
-  onDrop = file => {
+  onDrop = (file: File | null) => {
     this.createPreview(file);
     this.setState({ selectedFile: file });
   };

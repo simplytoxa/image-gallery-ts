@@ -9,9 +9,7 @@ interface Props {
 class Modal extends React.Component<Props> {
   constructor(props: Props, private root: Element) {
     super(props);
-  }
 
-  componentWillMount() {
     this.root = document.createElement('div');
     document.body.appendChild(this.root);
   }

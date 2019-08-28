@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import Modal from "../../UI/Modal/Modal";
 import SendForm from "../../components/SendForm/SendForm";
 import * as actions from "../../store/actions";
-import { ToolbarAction } from "../../store/actions/toolbar/toolbar";
 import { Dispatch } from "redux";
 
-export interface ModalProps {}
+export interface ModalProps {
+  toggleModal: () => void,
+  uploadImage: () => void,
+  file: File
+}
 
 class ModalContainer extends React.Component<ModalProps, any> {
   render() {
@@ -32,7 +35,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toggleModal(isModalOpen)),
+  toggleModal: (isModalOpen: boolean) => dispatch(actions.toggleModal(isModalOpen)),
   uploadImage: (formData: FormData) => dispatch(actions.uploadImageInit(formData))
 });
 

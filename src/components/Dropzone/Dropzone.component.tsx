@@ -1,13 +1,16 @@
 import React, { PureComponent } from 'react';
 import './Dropzone.component.css';
 
-class Dropzone extends PureComponent {
+interface DropzoneProps {
+  onDrop: (file: File | null) => void
+}
+class Dropzone extends PureComponent<DropzoneProps> {
   state = {
     hover: false,
     file: null
   };
 
-  dragOverHandler = (event) => {
+  dragOverHandler = (event: any) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -22,12 +25,12 @@ class Dropzone extends PureComponent {
 
   };
 
-  dropHandler = (event) => {
+  dropHandler = (event: any) => {
     event.stopPropagation();
     event.preventDefault();
     this.setState({ hover: false });
 
-    const file = event.dataTransfer.files[0];
+    const file = event.dataTransfer && event.dataTransfer.files[0];
     const isValid = file && (/\.(?=gif|jpg|png|jpeg)/gi).test(file.name);
     return isValid ? this.props.onDrop(file) : false;
   };
