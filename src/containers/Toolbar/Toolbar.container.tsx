@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import Toolbar from "../../components/ToolBar/Toolbar";
 import * as actions from "../../store/actions";
-import { ToolbarAction } from "../../store/actions/toolbar/toolbar";
 
 export interface Props {
   children?: React.ReactNode;
-  toggleModal: (isModalOpen: boolean) => ToolbarAction;
   isModalOpen: boolean;
+  count: number;
+  toggleModal: (isModalOpen: boolean) => void;
+  handleSearch: (term: string) => void;
 }
 
 class ToolbarContainer extends Component<Props> {
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleModal: (isModalOpen: boolean): ToolbarAction => dispatch(actions.toggleModal(isModalOpen)),
-  handleSearch: (): ToolbarAction => dispatch(actions.handleSearch())
+  handleSearch: (term: string) => dispatch(actions.handleSearch(term))
 });
 
 export default connect(

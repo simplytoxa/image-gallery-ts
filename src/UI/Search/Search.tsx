@@ -11,6 +11,7 @@ class Search extends PureComponent<Props> {
   };
 
   handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    // TODO: THROTLE!!!!!
     if (event.target) {
       const term = event.target.value;
       this.setState({value: event.target.value});

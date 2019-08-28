@@ -8,7 +8,7 @@ interface ToolbarProps {
   isModalOpen: boolean;
   toggleModal: (isOpenModal: boolean) => void;
   count: number;
-  handleSearch: () => void;
+  handleSearch: (term: string) => void;
 }
 
 class Toolbar extends React.PureComponent<ToolbarProps> {

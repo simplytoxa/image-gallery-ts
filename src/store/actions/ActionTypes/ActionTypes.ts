@@ -18,5 +18,8 @@ enum ActionTypes {
     UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS',
 
     SEARCH = 'SEARCH',
+    SEARCH_START = 'SEARCH_START',
+    SEARCH_SUCCESS = 'SEARCH_SUCCESS',
+    SEARCH_FAIL = 'SEARCH_FAIL'
 }
 export default ActionTypes;

@@ -81,6 +81,21 @@ export const toggleModal = (isModalOpen: boolean) => {
     };
 };
 
-export const handleSearch = () => ({
-    type: ActionTypes.SEARCH
+export const handleSearch = (term: string) => ({
+    type: ActionTypes.SEARCH,
+    term
+});
+
+export const handleSearchStart = () => ({
+    type: ActionTypes.SEARCH_START
+});
+
+export const handleSearchSuccess = (res: AxiosResponse) => ({
+    type: ActionTypes.SEARCH_SUCCESS,
+    status: res.status
+});
+
+export const handleSearchFail = (error: AxiosError) => ({
+    type: ActionTypes.SEARCH_FAIL,
+    error
 });
