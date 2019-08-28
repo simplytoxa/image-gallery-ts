@@ -1,5 +1,5 @@
 import { takeLatest, takeEvery } from "redux-saga/effects";
-import { fetchImagesSaga, removeImageSaga, uploadImageSaga } from "./gallery";
+import { fetchImagesSaga, removeImageSaga, uploadImageSaga } from "./gallery.saga";
 import ActionTypes from "../actions/ActionTypes";
 
 export function* watchGallery() {

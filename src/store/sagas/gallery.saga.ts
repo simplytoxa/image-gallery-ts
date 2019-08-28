@@ -1,5 +1,5 @@
 import { put } from "redux-saga/effects";
-import { Action } from "redux";
+import { Action, AnyAction } from "redux";
 import ActionTypes from "../actions/ActionTypes";
 import * as actions from "../actions";
 import axios from "../../axios-instance";
@@ -19,7 +19,7 @@ export function* fetchImagesSaga() {
   }
 }
 
-export function* removeImageSaga(action: Action<ActionTypes.REMOVE_IMAGE_INIT>) {
+export function* removeImageSaga(action: AnyAction) {
   try {
     yield put(actions.removeImageStart() as Action<ActionTypes.REMOVE_IMAGE_START>);
     const result: AxiosResponse = yield axios.post('/remove', { name: action.name });
@@ -30,12 +30,13 @@ export function* removeImageSaga(action: Action<ActionTypes.REMOVE_IMAGE_INIT>) 
   }
 }
 
-export function* uploadImageSaga(action: Action<ActionTypes.UPLOAD_IMAGE_INIT>) {
+export function* uploadImageSaga(action: AnyAction) {
     try {
-      yield put(actions.uploadImageStart() as Action<ActionTypes.UPLOAD_IMAGE_START>);
+      yield put(actions.uploadImageStart());
       const result: AxiosResponse = yield axios.post('/upload', action.formData);
       yield put(actions.uploadImageSuccess(result as AxiosResponse) as Action<ActionTypes.UPLOAD_IMAGE_SUCCESS>);
       yield put(actions.fetchImagesInit());
+      yield put(actions.toggleModal(true));
     } catch (error) {
       yield put(actions.uploadImageFail(error as AxiosError) as Action<ActionTypes.UPLOAD_IMAGE_FAIL>);
     }
