@@ -1,43 +1,29 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import ReactDOM from 'react-dom';
 import './Modal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
-  onClose: () => void
+  onClose: () => void,
+  root: Element
 }
-class Modal extends React.Component<Props> {
-  constructor(props: Props, private root: Element) {
-    super(props);
 
-    this.root = document.createElement('div');
-    document.body.appendChild(this.root);
-  }
+const Modal = (props: PropsWithChildren<Props>) => {
+  const clickHandler = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => (event.target && event.target.id === 'modal') && props.onClose();
 
-  componentWillUnmount() {
-    document.body.removeChild(this.root as Node);
-  }
-
-  clickHandler = (
-    event: React.MouseEvent<
-      HTMLDivElement,
-      MouseEvent
-    >
-  ) => (event.target && event.target.id === 'modal') && this.props.onClose();
-
-  render() {
-    return ReactDOM.createPortal(
-      <div className="Modal" id="modal" onClick={this.clickHandler}>
-        <div className="Modal__children">
-          <button className="Modal__close-button" onClick={this.props.onClose}>
-            <FontAwesomeIcon icon="times" />
-          </button>
-          {this.props.children}
-          </div>
-      </div>,
-      this.root
-    );
-  }
+  return ReactDOM.createPortal(
+    <div className="Modal" id="modal" onClick={clickHandler}>
+      <div className="Modal__children">
+        <button className="Modal__close-button" onClick={props.onClose}>
+          <FontAwesomeIcon icon="times" />
+        </button>
+        {props.children}
+        </div>
+    </div>,
+    props.root
+  );
 }
 
 export default Modal;

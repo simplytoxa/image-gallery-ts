@@ -24,7 +24,7 @@ export const fetchImagesInit = () => ({
     type: ActionTypes.FETCH_IMAGES_INIT
 });
 
-export const fileDrop = (file: DataTransferItem) => ({
+export const fileDrop = (file: File) => ({
     type: ActionTypes.FILE_DROP,
     isModalOpen: true,
     file

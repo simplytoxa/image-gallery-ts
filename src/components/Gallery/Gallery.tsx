@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import GalleryItem from "./GalleryItem/GalleryItem";
-import './Gallery.css';
+import './Gallery.scss';
 import Dropzone from "../Dropzone/Dropzone.component";
 import NoData from "../NoData/NoData";
 import Spinner from "../../UI/Spinner/Spinner";

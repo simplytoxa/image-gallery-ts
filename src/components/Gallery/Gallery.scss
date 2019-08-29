@@ -1,0 +1,12 @@
+.Gallery-container {
+  padding: 7rem 1rem 2rem;
+}
+
+@supports (display: grid) {
+  .Gallery {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 35rem));
+    grid-gap: 1rem;
+  }
+}

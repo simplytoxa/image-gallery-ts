@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, FunctionComponent } from "react";
 import { connect } from "react-redux";
 import Modal from "../../UI/Modal/Modal";
 import SendForm from "../../components/SendForm/SendForm";
@@ -8,35 +8,44 @@ import { Dispatch } from "redux";
 export interface ModalProps {
   toggleModal: () => void,
   uploadImage: () => void,
-  file: File
+  fileDrop: () => void,
+  file: File,
+  isModalOpen: boolean
 }
 
-class ModalContainer extends React.Component<ModalProps, any> {
-  render() {
-    return (
-      <>
-        {this.props.isModalOpen && (
-          <Modal onClose={this.props.toggleModal}>
-            <SendForm
-              closeModal={this.props.toggleModal}
-              uploadImage={this.props.uploadImage}
-              file={this.props.file}
-            />
-          </Modal>
-        )}
-      </>
-    );
-  }
+const ModalContainer: FunctionComponent<ModalProps> = (props: ModalProps) => {
+  const root = document.createElement('div');
+  document.body.appendChild(root);
+
+  useEffect(() => () => {
+    document.body.removeChild(root);
+  });
+
+  return (
+    <>
+      {props.isModalOpen && (
+        <Modal onClose={props.toggleModal} root={document.body}>
+          <SendForm
+            closeModal={props.toggleModal}
+            uploadImage={props.uploadImage}
+            file={props.file}
+            handleFileChange={props.fileDrop}
+          />
+        </Modal>
+      )}
+    </>
+  );
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   isModalOpen: state.gallery.isModalOpen,
   file: state.gallery.file
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleModal: (isModalOpen: boolean) => dispatch(actions.toggleModal(isModalOpen)),
-  uploadImage: (formData: FormData) => dispatch(actions.uploadImageInit(formData))
+  uploadImage: (formData: FormData) => dispatch(actions.uploadImageInit(formData)),
+  fileDrop: (file: File) => dispatch(actions.fileDrop(file))
 });
 
 export default connect(

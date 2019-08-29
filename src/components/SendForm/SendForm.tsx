@@ -1,116 +1,90 @@
-import React, { Component, RefObject } from 'react';
+import React, { RefObject, useEffect } from 'react';
 import Button from "../../UI/Button/Button";
 import InputFile from "./InputFile/InputFile";
 import './SendForm.css';
 import Dropzone from "../Dropzone/Dropzone.component";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ProgressBar from "../../UI/PorgressBar/ProgressBar";
-import axios from '../../axios-instance';
 
 interface SendFormProps {
   file: File,
   uploadImage: (formData: FormData) => void
+  handleFileChange: (file: File) => void
+  closeModal: () => void
 }
 
-const warning = {
-  'color': 'red'
-};
+const SendForm = (props: SendFormProps) => {
+  const imgRef: RefObject<HTMLImageElement> = React.createRef();
+  const warning = { 'color': 'red' };
 
-class SendForm extends Component<SendFormProps> {
-  state = {
-    selectedFile: null,
-    showMessage: false,
-    showAlreadyExistMessage: false,
-    progress: 0
-  };
+  useEffect(() => {
+    props.file && createPreview(props.file);
+  });
 
-  constructor(props: SendFormProps) {
-    super(props);
-    axios.interceptors.request.use((config) => ({
-      ...config,
-      onUploadProgress: (progressEvent) => {
-        const progress = Math.round(progressEvent.loaded / progressEvent.total * 100);
-        this.setState({ progress });
-      }
-    }));
-  }
-
-  imgRef: RefObject<HTMLImageElement> = React.createRef();
-
-  componentDidMount() {
-    if ( this.props.file ) {
-      this.setState({ selectedFile: this.props.file });
-      this.createPreview(this.props.file);
-    }
-  }
-
-  uploadHandler = () => {
-    const file = this.state.selectedFile || this.props.file;
-    if ( !file ) {
-      return this.setState({showMessage: true});
+  const uploadHandler = () => {
+    const file: File = props.file;
+    if (!file) {
+      return;
     }
 
     const formData = new FormData();
-    formData.set( 'imageFile', file, file.name );
+    formData.set('imageFile', file, file.name);
 
-    this.props.uploadImage(formData);
+    props.uploadImage(formData);
   };
 
-  inputFileChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+  const inputFileChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     const file = event.target && event.target.files[0];
 
-    if ( file ) {
-      this.createPreview(file);
-      this.setState({ selectedFile: file, showAlreadyExistMessage: false });
+    if (file) {
+      createPreview(file);
+      props.handleFileChange(file);
     }
   };
 
-  createPreview = (file: File | null) => {
-    if ( file && this.imgRef.current ) {
-      this.imgRef.current.className = 'SendForm__preview';
-      this.imgRef.current.src = URL.createObjectURL(file);
+  const createPreview = (file: File) => {
+    if (file && imgRef.current) {
+      imgRef.current.className = 'SendForm__preview';
+      imgRef.current.src = URL.createObjectURL(file);
     }
   };
 
-  onDrop = (file: File | null) => {
-    this.createPreview(file);
-    this.setState({ selectedFile: file });
+  const onDrop = (file: File) => {
+    createPreview(file);
+    props.handleFileChange(file);
   };
 
-  render() {
-    return (
-      <form className="SendForm">
-        <Dropzone border onDrop={this.onDrop}>
+  return (
+    <form className="SendForm">
+      <Dropzone border onDrop={onDrop}>
 
-          <label className="SendForm__label">
-            <img src="#" alt="Preview" className="hidden" ref={this.imgRef} />
-            <div className="SendForm__image-container">
-              {
-                !this.state.selectedFile ?
+        <label className="SendForm__label">
+          <img src="#" alt="Preview" className="hidden" ref={imgRef} />
+          <div className="SendForm__image-container">
+            {
+              !props.file ?
                 <FontAwesomeIcon icon="cloud-upload-alt" className="SendForm__icon" /> :
                 null
-              }
-              <div
-                className="SendForm__text"
-                style={this.state.showMessage ? warning : {}}>Select a file or drag here</div>
+            }
+            <div className="SendForm__text" style={!props.file ? warning : {}}>
+              Select a file or drag here
+              </div>
 
-              <InputFile onChange={this.inputFileChangeHandler} />
-              <Button
-                className="Button Button-primary SendForm_button"
-                onClick={this.uploadHandler}>
-                Upload a photo
+            <InputFile onChange={inputFileChangeHandler} />
+            <Button
+              className="Button Button-primary SendForm_button"
+              onClick={uploadHandler}>
+              Upload a photo
               </Button>
 
-              {this.state.showAlreadyExistMessage &&
-              <div className="success">The image is already uploaded! Please select another image.</div>}
-            </div>
+            {/* {this.state.showAlreadyExistMessage &&
+              <div className="success">The image is already uploaded! Please select another image.</div>} */}
+          </div>
 
-            <ProgressBar progress={this.state.progress} />
-          </label>
-        </Dropzone>
-      </form>
-    );
-  }
+          {/* <ProgressBar progress={} /> */}
+        </label>
+      </Dropzone>
+    </form>
+  );
 }
 
 export default SendForm;
