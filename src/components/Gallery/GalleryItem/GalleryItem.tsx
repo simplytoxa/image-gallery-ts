@@ -2,6 +2,7 @@ import React from 'react';
 import './GalleryItem.scss';
 import Action from "../../../UI/Action/Action";
 import Image from '../../../models/Image';
+import { Typography } from '@material-ui/core';
 
 interface Props {
   removeItem: (name: string) => void,
@@ -16,7 +17,9 @@ const GalleryItem = ({ item, removeItem }: Props) => (
       className="Gallery-item__remove"
       onClick={removeItem}
     />
-    <span className="text">{item.name}</span>
+    <div className="title-container">
+      <Typography className="title" noWrap title={item.name}>{item.name}</Typography>
+    </div>
   </li>
 );
 

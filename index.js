@@ -1,19 +1,22 @@
 const express    = require( 'express' );
 const bodyParser = require( 'body-parser' );
-const http       = require( 'http' );
 const path       = require( 'path' );
 const fs         = require( 'fs' );
 const cors       = require( 'cors' );
 const fileUpload = require( 'express-fileupload' );
 const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+
+const MONGO_URL = '';
 
 const app = module.exports = express();
-app.set( 'port', process.env.PORT || 8000 );
+const PORT = process.env.PORT || 8000;
+app.set( 'port', PORT );
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: false }) );
 app.use( express.static( path.join( __dirname, 'public' ) ) );
-app.use(fileUpload());
-app.use(cookieParser());
+app.use( fileUpload() );
+app.use( cookieParser() );
 app.use( cors() );
 
 app.post('/upload', (req, res) => {
@@ -90,7 +93,20 @@ app.use(function(err, req, res) {
     res.render('error');
 });
 
-// Starting express server
-http.createServer( app ).listen( app.get( 'port' ), function() {
-    console.log( 'Express server listening on port ' + app.get( 'port' ) );
-} );
+async function start() {
+    try {
+        await mongoose.connect(MONGO_URL, {
+            useNewUrlParser: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true
+        });
+
+        app.listen(PORT, () => {
+            console.log('Express server listening on port ' + PORT);
+        });
+    } catch(err) {
+        console.error(err);
+    }
+}
+
+start();
