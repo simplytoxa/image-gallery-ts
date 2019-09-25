@@ -24,7 +24,7 @@ export function* removeImageSaga(action: AnyAction) {
     yield put(actions.removeImageStart() as Action<
       ActionTypes.REMOVE_IMAGE_START
     >);
-    const result: AxiosResponse = yield axios.post("/remove", {
+    const result: AxiosResponse = yield axios.post("/images/remove", {
       name: action.name
     });
     yield put(actions.removeImageSuccess(result as AxiosResponse) as Action<
