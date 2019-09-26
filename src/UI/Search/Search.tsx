@@ -1,48 +1,45 @@
-import React, { PureComponent, ChangeEvent } from 'react';
+import React, { PureComponent, ChangeEvent, useState } from 'react';
 import './Search.css';
 
-export interface Props {
-  handleSearch: (term: string) => void
+export interface SearchProps {
+    handleSearch: (term: string) => void;
 }
 
-class Search extends PureComponent<Props> {
-  state = {
-    value: ''
-  };
+const Search = (props: SearchProps) => {
+    const [value, setValue] = useState('');
 
-  handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    // TODO: THROTLE!!!!!
-    if (event.target) {
-      const term = event.target.value;
-      this.setState({value: event.target.value});
-      this.props.handleSearch(term);
-    }
-  };
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        // TODO: THROTLE!!!!!
+        if (event.target) {
+            const term = event.target.value;
+            setValue(event.target.value);
+            props.handleSearch(term);
+        }
+    };
 
-  clearSearchHandler = () => {
-    this.setState({ value: '' });
-    this.props.handleSearch('');
-  };
+    const clearSearchHandler = () => {
+        setValue('');
+        props.handleSearch('');
+    };
 
-  render() {
     return (
-      <fieldset className="field-container">
-        <input
-          type="text"
-          placeholder="Type the title..."
-          className="field"
-          value={this.state.value}
-          onChange={this.handleChange}/>
-        <div className="icons-container">
-          <div className="icon-search"/>
-          <div className="icon-close" onClick={this.clearSearchHandler}>
-            <div className="x-up"/>
-            <div className="x-down"/>
-          </div>
-        </div>
-      </fieldset>
+        <fieldset className="field-container">
+            <input
+                type="text"
+                placeholder="Type the title..."
+                className="field"
+                value={value}
+                onChange={handleChange}
+            />
+            <div className="icons-container">
+                <div className="icon-search" />
+                <div className="icon-close" onClick={clearSearchHandler}>
+                    <div className="x-up" />
+                    <div className="x-down" />
+                </div>
+            </div>
+        </fieldset>
     );
-  }
-}
+};
 
 export default Search;
