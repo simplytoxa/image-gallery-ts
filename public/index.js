@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const imageRoutes = require('./routes/images');
-const MONGO_URL = '';
+const MONGO_URL = 'mongodb://localhost/image-gallery-ts';
 
 const app = (module.exports = express());
 const PORT = process.env.PORT || 8000;
@@ -17,7 +17,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 app.use(cookieParser());
 app.use(cors());
-
 app.use(imageRoutes);
 
 // catch 404 and forward to error handler

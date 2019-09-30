@@ -17,7 +17,12 @@ const SendForm = (props: SendFormProps) => {
   const warning = { 'color': 'red' };
 
   useEffect(() => {
+    const imgSrc = imgRef.current && imgRef.current.src;
     props.file && createPreview(props.file);
+
+    return () => {
+      imgSrc && URL.revokeObjectURL(imgSrc);
+    };
   });
 
   const uploadHandler = () => {

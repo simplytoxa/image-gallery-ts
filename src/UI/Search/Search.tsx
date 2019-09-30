@@ -1,4 +1,4 @@
-import React, { PureComponent, ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import './Search.css';
 
 export interface SearchProps {
