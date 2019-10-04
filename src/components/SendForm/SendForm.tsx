@@ -1,7 +1,7 @@
 import React, { RefObject, useEffect } from 'react';
 import Button from "../../UI/Button/Button";
 import InputFile from "./InputFile/InputFile";
-import './SendForm.css';
+import './SendForm.scss';
 import Dropzone from "../Dropzone/Dropzone.component";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import Button from '../../UI/Button/Button';
-import './Toolbar.css';
+import './Toolbar.scss';
 import Status from '../Status/Status';
 import Search from '../../UI/Search/Search';
 
