@@ -1,35 +1,29 @@
-import * as React from 'react';
-import Button from "../../UI/Button/Button";
-import "./Toolbar.css";
-import Status from "../Status/Status";
-import Search from "../../UI/Search/Search";
+import React, { memo } from 'react';
+import Button from '../../UI/Button/Button';
+import './Toolbar.css';
+import Status from '../Status/Status';
+import Search from '../../UI/Search/Search';
 
 interface ToolbarProps {
-  isModalOpen: boolean;
-  toggleModal: (isOpenModal: boolean) => void;
-  count: number;
-  handleSearch: (term: string) => void;
+    isModalOpen: boolean;
+    toggleModal: (isOpenModal: boolean) => void;
+    count: number;
+    handleSearch: (term: string) => void;
 }
 
-class Toolbar extends React.PureComponent<ToolbarProps> {
-  private toggle = () => this.props.toggleModal(this.props.isModalOpen)
+const Toolbar = memo((props: ToolbarProps) => {
+    const toggle = () => props.toggleModal(props.isModalOpen);
 
-  render() {
     return (
-      <div className="Toolbar">
-        <span className="Toolbar-logo">Gallery</span>
-        <Search handleSearch={this.props.handleSearch} />
-        <Status filesCount={this.props.count} />
-        <Button
-          type="button"
-          onClick={this.toggle}
-          className="Button Button-primary"
-        >
-          Add photo
-        </Button>
-      </div>
+        <div className="Toolbar">
+            <span className="Toolbar-logo">Gallery</span>
+            <Search handleSearch={props.handleSearch} />
+            <Status filesCount={props.count} />
+            <Button type="button" onClick={toggle} className="Button Button-primary">
+                Add photo
+            </Button>
+        </div>
     );
-  }
-};
+});
 
 export default Toolbar;
