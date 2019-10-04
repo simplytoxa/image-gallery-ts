@@ -1,30 +1,35 @@
-const fs = require('fs');
-const util = require('util');
-const path = require('path');
-const { Router } = require('express');
+import * as fs from 'fs';
+import * as util from 'util';
+import { Router } from 'express';
+import Image from '../models/Image';
+import { UploadedFile } from 'express-fileupload';
+
 const router = Router();
-const Image = require('../models/Image');
 
 /**
  * Upload
  */
 router.post('/images', async (req, res) => {
-    const readdir = util.promisify(fs.readdir);
-    const imageFile = req.files.imageFile;
+    if (!req.files) {
+        res.status(500);
+        return res.json("File wasn't attached");
+    }
+
+    const imageFile = req.files.imageFile as UploadedFile;
     const name = imageFile.name;
 
-    const files = await readdir(`./public/uploadedImages`);
-    if (files && files.includes(name)) {
-        console.log(`File ${name} is already included!`);
+    // don't save an image if it's already created
+    const isImageExist = await Image.exists({ name });
+    if (isImageExist) {
         res.status(200);
-        res.json({
+        return res.json({
             message: `File ${name} is already included!`,
             alreadyExist: true
         });
     }
 
-    const path = `./public/uploadedImages/${name}`;
-    imageFile.mv(path, async err => {
+    const path = `uploadedImages/${name}`;
+    imageFile.mv(`./public/${path}`, async (err: Error) => {
         if (err) return res.status(500).send(err);
 
         const image = new Image({
@@ -44,18 +49,11 @@ router.post('/images', async (req, res) => {
  */
 router.get('/images', async (req, res) => {
     const dir = './public/uploadedImages';
-    const readdir = util.promisify(fs.readdir);
+    const exists = util.promisify(fs.exists);
+    const mkdir = util.promisify(fs.mkdir);
 
     // create directory if it isn't exist
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
-    }
-
-    // const files = await readdir(dir);
-    // const images = files.map(fileName => ({
-    //     path: path.join('./uploadedImages', fileName),
-    //     name: fileName
-    // }));
+    !exists(dir) && mkdir(dir);
 
     const images = await Image.find();
     res.status(200);
@@ -68,12 +66,13 @@ router.get('/images', async (req, res) => {
 router.post('/images/:imgId/remove', async (req, res) => {
     try {
         const imgId = req.params.imgId;
-        const { name } = req.body;
+        const { img } = req.body;
         const unlink = util.promisify(fs.unlink);
-        const message = `${name} with id ${imgId} was deleted`;
+        const message = `${img.name} with id ${imgId} was deleted`;
 
-        await unlink(`./public/uploadedImages/${name}`);
+        console.log('REMOVE_IMAGE_ID', imgId);
         await Image.findByIdAndRemove(imgId);
+        await unlink(`./public/uploadedImages/${img.name}`);
 
         res.status(200);
         res.json({ status: 'OK', message });
@@ -83,4 +82,4 @@ router.post('/images/:imgId/remove', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

@@ -1,15 +1,18 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
-const cors = require('cors');
-const fileUpload = require('express-fileupload');
-const cookieParser = require('cookie-parser');
-const mongoose = require('mongoose');
-const imageRoutes = require('./routes/images');
-const MONGO_URL = 'mongodb://localhost/image-gallery-ts';
+import * as path from 'path';
 
-const app = (module.exports = express());
+import imageRoutes from './routes/images';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import fileUpload from 'express-fileupload';
+import cookieParser from 'cookie-parser';
+import mongoose from 'mongoose';
+
+const MONGO_URL = 'mongodb://localhost/image-gallery-ts';
 const PORT = process.env.PORT || 8000;
+
+const app = express();
+
 app.set('port', PORT);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,19 +25,7 @@ app.use(imageRoutes);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-// error handler
-app.use(function(err, req, res) {
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
-    res.status(err.status || 500);
-    res.render('error');
+    next({ err, status: 404 });
 });
 
 async function start() {
@@ -54,3 +45,5 @@ async function start() {
 }
 
 start();
+
+export default app;

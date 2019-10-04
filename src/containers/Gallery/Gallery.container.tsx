@@ -11,7 +11,8 @@ export interface GalleryContainerProps {
     toggleModal: (isModalOpen: boolean) => void;
     fetchImages: () => void;
     onFileDrop: () => void;
-    removeItem: (name: string) => void;
+    removeItem: (img: Image) => void;
+    ready: boolean;
 }
 
 const GalleryContainer = (props: GalleryContainerProps) => {
@@ -33,7 +34,7 @@ const mapDispatch2Props = (dispatch: Dispatch) => ({
     toggleModal: (isModalOpen: boolean) => dispatch(actions.toggleModal(isModalOpen)),
     fetchImages: () => dispatch(actions.fetchImagesInit()),
     onFileDrop: (file: File) => dispatch(actions.fileDrop(file)),
-    removeItem: (name: string) => dispatch(actions.removeImageInit(name)),
+    removeItem: (id: string) => dispatch(actions.removeImageInit(id)),
 });
 
 export default connect(

@@ -1,6 +1,5 @@
-export default class Image {
-    constructor(
-        public name: string,
-        public path: string
-    ) {}
+export default interface Image {
+    name: string,
+    path: string,
+    _id: string
 }
