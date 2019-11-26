@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useRef } from 'react';
 import Button from '../../../UI/Button/Button';
 
 interface Props {
@@ -10,11 +10,11 @@ const inputStyles = {
 };
 
 const InputFile = (props: Props) => {
-    const inputRef = React.createRef<HTMLInputElement>();
+    const inputRef = useRef<HTMLInputElement>(null);
     const handleInputClick = () => inputRef.current && inputRef.current.click();
 
     return (
-        <Fragment>
+        <>
             <input
                 style={inputStyles}
                 type="file"
@@ -26,7 +26,7 @@ const InputFile = (props: Props) => {
             <Button type="button" className="Button Button-solid" onClick={handleInputClick}>
                 Browse
             </Button>
-        </Fragment>
+        </>
     );
 };
 

@@ -1,23 +1,18 @@
-import React from "react";
-import Toolbar from "./containers/Toolbar";
-import Gallery from "./containers/Gallery";
-import Modal from "./containers/Modal";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
+import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.scss';
+import Login from './components/LoginForm/LoginForm';
+import Dashboard from './components/Dashboard/Dashborad';
 
 const App = () => (
-  <>
-    <CssBaseline />
-    <Header>
-      <Toolbar />
-    </Header>
-    <Main>
-      <Gallery />
-    </Main>
-    <Modal />
-  </>
+    <Router>
+        <CssBaseline />
+        <Switch>
+            <Route path="/" exact component={Login} />
+            <Route path="/dashboard" component={Dashboard} />
+        </Switch>
+    </Router>
 );
 
 export default App;

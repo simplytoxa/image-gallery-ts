@@ -6,8 +6,9 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faExclamationCircle, faCloudUploadAlt, faImages, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationCircle, faCloudUploadAlt, faImages, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import rootReducer from './store/reducers';
+
 import createSagaMiddleware from 'redux-saga';
 import { watchGallery } from './store/sagas';
 
@@ -20,16 +21,14 @@ library.add(faTrash);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(rootReducer, composeEnhancers(
-  applyMiddleware(sagaMiddleware)
-));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(watchGallery);
 
 const app = (
-  <Provider store={store}>
-    <App />
-  </Provider>
+    <Provider store={store}>
+        <App />
+    </Provider>
 );
 
 ReactDOM.render(app, document.getElementById('root'));
