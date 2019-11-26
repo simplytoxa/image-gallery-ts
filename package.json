@@ -2,6 +2,18 @@
     "name": "images-gallery-ts",
     "version": "0.1.0",
     "private": true,
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "server": "nodemon",
+        "lint": "yarn run lint:es && yarn run lint:prettier",
+        "lint:prettier": "prettier --list-different \"./src/**/*.ts*\"",
+        "lint:prettier:fix": "prettier --write \"./src/**/*.ts*\"",
+        "lint:es": "eslint --ext=.js,.ts,.tsx src",
+        "lint:es:fix": "eslint --ext=.js,.ts,.tsx src --quiet --fix"
+    },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.22",
         "@fortawesome/free-solid-svg-icons": "^5.10.2",
@@ -19,7 +31,7 @@
         "cookie-parser": "^1.4.4",
         "cors": "^2.8.5",
         "express": "^4.17.1",
-        "express-fileupload": "^1.1.5",
+        "express-fileupload": "^1.1.6",
         "mongoose": "^5.7.1",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
@@ -30,13 +42,6 @@
         "redux": "^4.0.4",
         "redux-saga": "^1.0.5",
         "typescript": "3.5.3"
-    },
-    "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "server": "nodemon"
     },
     "eslintConfig": {
         "extends": "react-app"

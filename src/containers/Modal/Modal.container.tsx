@@ -1,16 +1,16 @@
-import React, { useEffect, FunctionComponent } from "react";
-import { connect } from "react-redux";
-import Modal from "../../UI/Modal/Modal";
-import SendForm from "../../components/SendForm/SendForm";
-import * as actions from "../../store/actions";
-import { Dispatch } from "redux";
+import React, { useEffect, FunctionComponent } from 'react';
+import { connect } from 'react-redux';
+import Modal from '../../UI/Modal/Modal';
+import SendForm from '../../components/SendForm/SendForm';
+import * as actions from '../../store/actions';
+import { Dispatch } from 'redux';
 
 export interface ModalProps {
-  toggleModal: () => void,
-  uploadImage: () => void,
-  fileDrop: () => void,
-  file: File,
-  isModalOpen: boolean
+  toggleModal: () => void;
+  uploadImage: () => void;
+  fileDrop: () => void;
+  file: File;
+  isModalOpen: boolean;
 }
 
 const ModalContainer: FunctionComponent<ModalProps> = (props: ModalProps) => {
@@ -35,17 +35,17 @@ const ModalContainer: FunctionComponent<ModalProps> = (props: ModalProps) => {
       )}
     </>
   );
-}
+};
 
 const mapStateToProps = (state: any) => ({
   isModalOpen: state.gallery.isModalOpen,
-  file: state.gallery.file
+  file: state.gallery.file,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   toggleModal: (isModalOpen: boolean) => dispatch(actions.toggleModal(isModalOpen)),
   uploadImage: (formData: FormData) => dispatch(actions.uploadImageInit(formData)),
-  fileDrop: (file: File) => dispatch(actions.fileDrop(file))
+  fileDrop: (file: File) => dispatch(actions.fileDrop(file)),
 });
 
 export default connect(

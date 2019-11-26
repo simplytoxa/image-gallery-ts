@@ -8,7 +8,7 @@ import Search from './Search';
 
 describe('<Search>', () => {
   const onChange = jest.fn();
-  const wrapper = shallow( <Search onChange={onChange} /> );
+  const wrapper = shallow(<Search onChange={onChange} />);
 
   it('should pass a input value to the onChange', () => {
     const value = 'abc';
@@ -21,7 +21,7 @@ describe('<Search>', () => {
     expect(onChange).toBeCalledWith(value);
   });
 
-  it( 'should clear the input value after click on clear button', () => {
+  it('should clear the input value after click on clear button', () => {
     expect(wrapper).toMatchSnapshot();
 
     const input = wrapper.find('input');
@@ -31,6 +31,5 @@ describe('<Search>', () => {
 
     wrapper.find('.icon-close').simulate('click');
     expect(wrapper.state('value')).toBe('');
-
   });
 });

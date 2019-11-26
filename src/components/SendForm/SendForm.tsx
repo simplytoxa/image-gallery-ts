@@ -1,20 +1,20 @@
 import React, { RefObject, useEffect } from 'react';
-import Button from "../../UI/Button/Button";
-import InputFile from "./InputFile/InputFile";
+import Button from '../../UI/Button/Button';
+import InputFile from './InputFile/InputFile';
 import './SendForm.scss';
-import Dropzone from "../Dropzone/Dropzone.component";
+import Dropzone from '../Dropzone/Dropzone.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface SendFormProps {
-  file: File,
-  uploadImage: (formData: FormData) => void
-  handleFileChange: (file: File) => void
-  closeModal: () => void
+  file: File;
+  uploadImage: (formData: FormData) => void;
+  handleFileChange: (file: File) => void;
+  closeModal: () => void;
 }
 
 const SendForm = (props: SendFormProps) => {
   const imgRef: RefObject<HTMLImageElement> = React.createRef();
-  const warning = { 'color': 'red' };
+  const warning = { color: 'red' };
 
   useEffect(() => {
     const imgSrc = imgRef.current && imgRef.current.src;
@@ -61,25 +61,18 @@ const SendForm = (props: SendFormProps) => {
   return (
     <form className="SendForm">
       <Dropzone border onDrop={onDrop}>
-
         <label className="SendForm__label">
           <img src="#" alt="Preview" className="hidden" ref={imgRef} />
           <div className="SendForm__image-container">
-            {
-              !props.file ?
-                <FontAwesomeIcon icon="cloud-upload-alt" className="SendForm__icon" /> :
-                null
-            }
+            {!props.file ? <FontAwesomeIcon icon="cloud-upload-alt" className="SendForm__icon" /> : null}
             <div className="SendForm__text" style={!props.file ? warning : {}}>
               Select a file or drag here
-              </div>
+            </div>
 
             <InputFile onChange={inputFileChangeHandler} />
-            <Button
-              className="Button Button-primary SendForm_button"
-              onClick={uploadHandler}>
+            <Button className="Button Button-primary SendForm_button" onClick={uploadHandler}>
               Upload a photo
-              </Button>
+            </Button>
 
             {/* {this.state.showAlreadyExistMessage &&
               <div className="success">The image is already uploaded! Please select another image.</div>} */}
@@ -90,6 +83,6 @@ const SendForm = (props: SendFormProps) => {
       </Dropzone>
     </form>
   );
-}
+};
 
 export default SendForm;

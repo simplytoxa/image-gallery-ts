@@ -6,13 +6,13 @@ import Login from './components/LoginForm/LoginForm';
 import Dashboard from './components/Dashboard/Dashborad';
 
 const App = () => (
-    <Router>
-        <CssBaseline />
-        <Switch>
-            <Route path="/" exact component={Login} />
-            <Route path="/dashboard" component={Dashboard} />
-        </Switch>
-    </Router>
+  <Router>
+    <CssBaseline />
+    <Switch>
+      <Route path="/" exact component={Login} />
+      <Route path="/dashboard" component={Dashboard} />
+    </Switch>
+  </Router>
 );
 
 export default App;

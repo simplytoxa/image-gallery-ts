@@ -8,21 +8,21 @@ import { GalleryContainerProps } from '../../containers/Gallery/Gallery.containe
 import Image from '../../models/Image';
 
 const Gallery = (props: GalleryContainerProps) => {
-    const handleRemove = (img: Image) => () => props.removeItem(img);
+  const handleRemove = (img: Image) => () => props.removeItem(img);
 
-    const mapedImages = props.images.map((img: Image) => (
-        <GalleryItem item={img} key={img.name} removeItem={handleRemove(img)} />
-    ));
+  const mapedImages = props.images.map((img: Image) => (
+    <GalleryItem item={img} key={img.name} removeItem={handleRemove(img)} />
+  ));
 
-    return (
-        <Dropzone onDrop={props.onFileDrop}>
-            <div className="Gallery-container">
-                {!props.ready && <Spinner />}
-                {props.ready && <ul className="Gallery">{mapedImages}</ul>}
-                {props.ready && !props.images.length && <NoData />}
-            </div>
-        </Dropzone>
-    );
+  return (
+    <Dropzone onDrop={props.onFileDrop}>
+      <div className="Gallery-container">
+        {!props.ready && <Spinner />}
+        {props.ready && <ul className="Gallery">{mapedImages}</ul>}
+        {props.ready && !props.images.length && <NoData />}
+      </div>
+    </Dropzone>
+  );
 };
 
 export default Gallery;

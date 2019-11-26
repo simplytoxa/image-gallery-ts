@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './NoData.css'
+import './NoData.css';
 
 const NoData = () => {
   return (

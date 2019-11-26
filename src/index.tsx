@@ -26,9 +26,9 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMidd
 sagaMiddleware.run(watchGallery);
 
 const app = (
-    <Provider store={store}>
-        <App />
-    </Provider>
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
 
 ReactDOM.render(app, document.getElementById('root'));

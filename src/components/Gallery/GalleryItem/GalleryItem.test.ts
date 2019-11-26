@@ -9,7 +9,7 @@ configure({ adapter: new Adapter() });
 describe('<GalleryItem />', () => {
   const item = {
     name: 'Name',
-    path: 'Path'
+    path: 'Path',
   };
   let wrapper = shallow(<GalleryItem item={item} />);
 

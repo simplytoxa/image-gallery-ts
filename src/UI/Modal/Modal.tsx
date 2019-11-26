@@ -4,14 +4,13 @@ import './Modal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
-  onClose: () => void,
-  root: Element
+  onClose: () => void;
+  root: Element;
 }
 
 const Modal = (props: PropsWithChildren<Props>) => {
-  const clickHandler = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => (event.target && event.target.id === 'modal') && props.onClose();
+  const clickHandler = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+    event.target && event.target.id === 'modal' && props.onClose();
 
   return ReactDOM.createPortal(
     <div className="Modal" id="modal" onClick={clickHandler}>
@@ -20,10 +19,10 @@ const Modal = (props: PropsWithChildren<Props>) => {
           <FontAwesomeIcon icon="times" />
         </button>
         {props.children}
-        </div>
+      </div>
     </div>,
     props.root
   );
-}
+};
 
 export default Modal;
