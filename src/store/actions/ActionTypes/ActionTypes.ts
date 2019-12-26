@@ -21,5 +21,7 @@ enum ActionTypes {
   SEARCH_START = 'SEARCH_START',
   SEARCH_SUCCESS = 'SEARCH_SUCCESS',
   SEARCH_FAIL = 'SEARCH_FAIL',
+
+  DO_LOGOUT = 'DO_LOGOUT',
 }
 export default ActionTypes;

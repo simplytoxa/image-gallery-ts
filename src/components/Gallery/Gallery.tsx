@@ -2,8 +2,8 @@ import React from 'react';
 import GalleryItem from './GalleryItem/GalleryItem';
 import './Gallery.scss';
 import Dropzone from '../Dropzone/Dropzone.component';
-import NoData from '../NoData/NoData';
-import Spinner from '../../UI/Spinner/Spinner';
+import NoData from '../shared/NoData/NoData';
+import Spinner from '../shared/Spinner/Spinner';
 import { GalleryContainerProps } from '../../containers/Gallery/Gallery.container';
 import Image from '../../models/Image';
 

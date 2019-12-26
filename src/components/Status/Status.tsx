@@ -1,13 +1,19 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './Status.css';
+import { Box, Typography } from '@material-ui/core';
+import BurstModeOutlinedIcon from '@material-ui/icons/BurstModeOutlined';
 
-const Status = props => {
+interface Props {
+  filesCount: number;
+}
+
+const Status = (props: Props) => {
   return (
-    <div className="Status">
-      <FontAwesomeIcon icon="images" />
-      <span className="Status__number">{props.filesCount}</span>
-    </div>
+    <Box fontSize={18} color="grey" display="flex">
+      <BurstModeOutlinedIcon />
+      <Box marginLeft="10px">
+        <Typography component="span">{props.filesCount}</Typography>
+      </Box>
+    </Box>
   );
 };
 

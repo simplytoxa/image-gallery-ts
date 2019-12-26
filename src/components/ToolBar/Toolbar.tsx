@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
-import Button from '../../UI/Button/Button';
+import Button from '../shared/Button/Button';
 import './Toolbar.scss';
 import Status from '../Status/Status';
-import Search from '../../UI/Search/Search';
+import Search from '../shared/Search/Search';
 
 interface ToolbarProps {
   isModalOpen: boolean;

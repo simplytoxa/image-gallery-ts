@@ -1,9 +1,9 @@
 import React, { RefObject, useEffect } from 'react';
-import Button from '../../UI/Button/Button';
+import CloudUploadOutlinedIcon from '@material-ui/icons/CloudUploadOutlined';
+import Button from '../shared/Button/Button';
 import InputFile from './InputFile/InputFile';
 import './SendForm.scss';
 import Dropzone from '../Dropzone/Dropzone.component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface SendFormProps {
   file: File;
@@ -64,7 +64,9 @@ const SendForm = (props: SendFormProps) => {
         <label className="SendForm__label">
           <img src="#" alt="Preview" className="hidden" ref={imgRef} />
           <div className="SendForm__image-container">
-            {!props.file ? <FontAwesomeIcon icon="cloud-upload-alt" className="SendForm__icon" /> : null}
+            {!props.file ? (
+              <CloudUploadOutlinedIcon fontSize="large" className="SendForm__icon" />
+            ) : null}
             <div className="SendForm__text" style={!props.file ? warning : {}}>
               Select a file or drag here
             </div>

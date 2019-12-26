@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import Button from '../../../UI/Button/Button';
+import Button from '../../shared/Button/Button';
 
 interface Props {
   onChange: () => void;

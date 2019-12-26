@@ -1,6 +1,6 @@
 import React, { useEffect, FunctionComponent } from 'react';
 import { connect } from 'react-redux';
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../components/shared/Modal/Modal';
 import SendForm from '../../components/SendForm/SendForm';
 import * as actions from '../../store/actions';
 import { Dispatch } from 'redux';
