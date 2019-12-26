@@ -40,7 +40,8 @@ async function start() {
             console.log('Express server listening on port ' + PORT);
         });
     } catch (err) {
-        console.error(err);
+        console.error('SERVER ERROR:', err);
+        process.exit(1);
     }
 }
 
