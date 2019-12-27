@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from 'react-hook-form';
+import { useForm, Ref } from 'react-hook-form';
 import { Button, Typography, Grid, Box, Avatar } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import ValidationTextField from './ValidationTextField/ValidationTextField';
@@ -33,7 +33,7 @@ const Login = () => {
                   type="email"
                   variant="outlined"
                   name="email"
-                  ref={register({ required: true })}
+                  ref={register<Ref>({ required: true })}
                 />
                 {errors.exampleRequired && <span>This field is required</span>}
               </Grid>
@@ -46,7 +46,7 @@ const Login = () => {
                   variant="outlined"
                   name="password"
                   autoComplete="new-password"
-                  ref={register({ required: true })}
+                  ref={register<Ref>({ required: true })}
                 />
                 {errors.exampleRequired && <span>This field is required</span>}
               </Grid>
