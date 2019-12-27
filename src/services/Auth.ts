@@ -5,7 +5,6 @@ import store from '../configs/store';
 export const buildContext = () => ({
   logout: () => store.dispatch(doLogout()),
   checkPermission: () => {
-    debugger;
     return false;
   },
 });

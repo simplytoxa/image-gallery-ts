@@ -1,0 +1,5 @@
+{
+  "jwtSecret": "my secret Key 123",
+  "port": 5000,
+  "mongoUrl": "mongodb://localhost/image-gallery-ts"
+}

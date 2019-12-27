@@ -6,10 +6,12 @@ import { UploadedFile } from "express-fileupload";
 
 const router = Router();
 
+// /api/images/
+
 /**
  * Upload
  */
-router.post("/images", async (req, res) => {
+router.post("/", async (req, res) => {
   if (!req.files) {
     res.status(500);
     return res.json("File wasn't attached");
@@ -20,7 +22,7 @@ router.post("/images", async (req, res) => {
 
   // don't save an image if it's already created
   const isImageExist = await Image.exists({ name });
-  if (isImageExist) {
+    if (isImageExist) {
     res.status(200);
     return res.json({
       message: `File ${name} is already included!`,
@@ -47,7 +49,7 @@ router.post("/images", async (req, res) => {
 /**
  * Retrieve all images
  */
-router.get("/images", async (req, res) => {
+router.get("/", async (req, res) => {
   const dir = "./public/assets";
   const exists = fs.existsSync(dir);
 
@@ -62,14 +64,13 @@ router.get("/images", async (req, res) => {
 /**
  * Remove an image
  */
-router.post("/images/:imgId/remove", async (req, res) => {
+router.post("/:imgId/remove", async (req, res) => {
   try {
     const imgId = req.params.imgId;
     const { img } = req.body;
     const unlink = util.promisify(fs.unlink);
     const message = `${img.name} with id ${imgId} was deleted`;
 
-    console.log("REMOVE_IMAGE_ID", imgId);
     await Image.findByIdAndRemove(imgId);
     await unlink(`./public/assets/${img.name}`);
 
