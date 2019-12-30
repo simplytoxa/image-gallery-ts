@@ -1,14 +1,45 @@
-import React from 'react';
-import { useForm, Ref } from 'react-hook-form';
+import React, { useState, useCallback, ChangeEvent } from 'react';
+import { Ref, useForm } from 'react-hook-form';
 import { Button, Typography, Grid, Box, Avatar } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import ValidationTextField from './ValidationTextField/ValidationTextField';
 import useStyles from './styles';
 
-const Login = () => {
+interface Props {
+  doAuthInit: (data: SubmitFormData) => void;
+  email: string;
+  password: string;
+}
+interface SubmitFormData {
+  email: string;
+  password: string;
+}
+
+const Login = ({ doAuthInit }: Props) => {
   const { register, handleSubmit, errors } = useForm();
   const classes = useStyles();
-  const onSubmit = (data: any) => console.log(data);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const onSubmit = useCallback(
+    (data: SubmitFormData) => {
+      doAuthInit(data);
+      setEmail('');
+      setPassword('');
+    },
+    [doAuthInit, setEmail, setPassword]
+  );
+  const handleEmailChange = useCallback(
+    (ev: ChangeEvent<HTMLInputElement>) => {
+      setEmail(ev.target.value);
+    },
+    [setEmail]
+  );
+  const handlePasswordChange = useCallback(
+    (ev: ChangeEvent<HTMLInputElement>) => {
+      setPassword(ev.target.value);
+    },
+    [setPassword]
+  );
 
   return (
     <main className={classes.root}>
@@ -26,6 +57,8 @@ const Login = () => {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <ValidationTextField
+                  value={email}
+                  onChange={handleEmailChange}
                   label="Login"
                   fullWidth
                   autoComplete="off"
@@ -33,20 +66,22 @@ const Login = () => {
                   type="email"
                   variant="outlined"
                   name="email"
-                  ref={register<Ref>({ required: true })}
+                  inputRef={register<Ref>({ required: true })}
                 />
                 {errors.exampleRequired && <span>This field is required</span>}
               </Grid>
 
               <Grid item xs={12}>
                 <ValidationTextField
+                  value={password}
+                  onChange={handlePasswordChange}
                   label="Password"
                   fullWidth
                   type="password"
                   variant="outlined"
                   name="password"
                   autoComplete="new-password"
-                  ref={register<Ref>({ required: true })}
+                  inputRef={register<Ref>({ required: true })}
                 />
                 {errors.exampleRequired && <span>This field is required</span>}
               </Grid>

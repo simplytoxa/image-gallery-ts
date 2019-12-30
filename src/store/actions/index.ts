@@ -15,3 +15,5 @@ export {
   uploadImageSuccess,
   uploadImageFail,
 } from './gallery/gallery';
+
+export { doLogout, doAuthInit, doAuthStart, doAuthSuccess, doAuthFail } from './auth/auth';

@@ -1,5 +1,5 @@
-import Login from '../components/Login/Login';
 import Dashboard from '../components/Dashboard/Dashborad';
+import AuthForm from '../containers/AuthForm/AuthForm.container';
 
 interface RouteType {
   id: string;
@@ -13,10 +13,10 @@ interface RouteType {
 
 export const routes: RouteType[] = [
   {
-    id: 'login',
+    id: 'auth',
     path: '/',
     exact: true,
-    component: Login,
+    component: AuthForm,
     isPublic: true,
   },
   {

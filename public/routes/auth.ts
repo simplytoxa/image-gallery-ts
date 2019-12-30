@@ -11,7 +11,7 @@ const router = Router();
 router.post(
   '/register',
   [
-    check('email', 'Invalid email'),
+    check('email', 'Invalid email').isEmail(),
     check('password', 'Minimum 6 symbols length').isLength({ min: 6 }),
   ],
   async (req: Request, res: Response) => {

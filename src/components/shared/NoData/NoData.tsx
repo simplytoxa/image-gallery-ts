@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import ReportProblemOutlinedIcon from '@material-ui/icons/ReportProblemOutlined';
 import { Box, Typography } from '@material-ui/core';
 import useStyles from './styles';
