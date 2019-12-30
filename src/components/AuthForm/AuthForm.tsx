@@ -1,12 +1,12 @@
 import React, { useState, useCallback, ChangeEvent } from 'react';
-import { Ref, useForm } from 'react-hook-form';
+import { Ref, useForm, OnSubmit } from 'react-hook-form';
 import { Button, Typography, Grid, Box, Avatar } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import ValidationTextField from './ValidationTextField/ValidationTextField';
 import useStyles from './styles';
 
 interface Props {
-  doAuthInit: (data: SubmitFormData) => void;
+  doAuthInit: (data: Record<string, string>) => void;
   email: string;
   password: string;
 }
@@ -20,8 +20,8 @@ const Login = ({ doAuthInit }: Props) => {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const onSubmit = useCallback(
-    (data: SubmitFormData) => {
+  const onSubmit = useCallback<OnSubmit<Record<string, string>>>(
+    data => {
       doAuthInit(data);
       setEmail('');
       setPassword('');
