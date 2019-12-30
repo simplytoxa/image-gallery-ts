@@ -10,10 +10,6 @@ interface Props {
   email: string;
   password: string;
 }
-interface SubmitFormData {
-  email: string;
-  password: string;
-}
 
 const Login = ({ doAuthInit }: Props) => {
   const { register, handleSubmit, errors } = useForm();
